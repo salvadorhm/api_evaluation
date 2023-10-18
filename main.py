@@ -23,19 +23,20 @@ async def crear_contacto(contacto: Contacto):
               (contacto.email, contacto.nombre, contacto.telefono))
     conn.commit()
     return contacto
-''''
+
 @app.get("/contactos")
 async def obtener_contactos():
     """Obtiene todos los contactos."""
     # TODO Consulta todos los contactos de la base de datos y los envia en un JSON
     c = conn.cursor()
-    c.execute('SELECT * FROM contactos')
+    c.execute('SELECT * FROM contactos;')
     response = []
-    for row in m:
-        contacto = Contacto(row[1], row[2], row[3])
+    for row in c:
+        contacto = {"email":row[0],"nombre":row[1], "telefono":row[2]}
         response.append(contacto)
     return response
 
+''''
 @app.get("/contactos/{email}")
 async def obtener_contacto(email: str):
     """Obtiene un contacto por su email."""

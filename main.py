@@ -36,18 +36,19 @@ async def obtener_contactos():
         response.append(contacto)
     return response
 
-''''
+
 @app.get("/contactos/{email}")
 async def obtener_contacto(email: str):
     """Obtiene un contacto por su email."""
     # Consulta el contacto por su email
-    co = conn.cursor()
-    con.execute('SELECT * FROM contactos WHERE email = ?', (email,))
+    c = conn.cursor()
+    c.execute('SELECT * FROM contactos WHERE email = ?', (email,))
     contacto = None
-    for row in connection:
-        contacto = Contactos(row[1], row[2], row[3])
+    for row in c:
+        contacto = {"email":row[0],"nombre":row[1],"telefono":row[2]}
     return contacto
 
+''''
 @app.put("/contactos/{email}")
 async def actualizar_contacto(email: str, contacto: Contactos):
     """Actualiza un contacto."""

@@ -1,5 +1,7 @@
 # Evaluación de conocimientos de API REST
 
+## Esta rama es la solución a cada uno de los puntos
+
 ## 1. Tickets a corregir
 
 |no|Descripción|Terminado (S/N)|

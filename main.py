@@ -1,16 +1,16 @@
 import fastapi
 import sqlite3
-from pydantic import Basemodel
+from pydantic import BaseModel
 
 # Crea la base de datos
 conn = sqlite3.connect("contactos.db")
 
 app = fastapi.FastAPI()
 
-class Contacto(Basemodel):
+class Contacto(BaseModel):
     email : str
-    nombres : str
-    telfono : str
+    nombre : str
+    telefono : str
 
 # Rutas para las operaciones CRUD
 
@@ -18,12 +18,12 @@ class Contacto(Basemodel):
 async def crear_contacto(contacto: Contacto):
     """Crea un nuevo contacto."""
     # TODO Inserta el contacto en la base de datos y responde con un mensaje
-    connection = conn.cursor()
-    c.execute('INSERT INTO contacto (email, nombres, telefono) VALUES (?, ?)',
+    c = conn.cursor()
+    c.execute('INSERT INTO contactos (email, nombre, telefono) VALUES (?, ?, ?)',
               (contacto.email, contacto.nombre, contacto.telefono))
     conn.commit()
     return contacto
-
+'''
 @app.get("/contactos")
 async def obtener_contactos():
     """Obtiene todos los contactos."""
@@ -66,3 +66,4 @@ async def eliminar_contacto(email: str):
     connection.execute('DELETE contactos WHERE email = ?', (email))
     conn.commit()
     return contacto
+'''

@@ -57,13 +57,12 @@ async def actualizar_contacto(email: str, contacto: Contacto):
     conn.commit()
     return contacto
 
-'''
+
 @app.delete("/contactos/{email}")
 async def eliminar_contacto(email: str):
     """Elimina un contacto."""
-    # TODO Elimina el contacto de la base de datos
-    connection = conn.cursor()
-    connection.execute('DELETE contactos WHERE email = ?', (email))
+    # DONE Elimina el contacto de la base de datos
+    c = conn.cursor()
+    c.execute('DELETE FROM contactos WHERE email = ?', (email,))
     conn.commit()
-    return contacto
-'''
+    return {"mensaje":"Elemento borrado"}

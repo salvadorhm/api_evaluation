@@ -46,18 +46,18 @@ async def obtener_contacto(email: str):
     for row in c:
         contacto = {"email":row[0], "nombre":row[1], "telefono":row[2]}
     return contacto
-'''
+
 @app.put("/contactos/{email}")
-async def actualizar_contacto(email: str, contacto: Contactos):
+async def actualizar_contacto(email: str, contacto: Contacto):
     """Actualiza un contacto."""
-    # TODO Actualiza el contacto en la base de datos
+    # DONE Actualiza el contacto en la base de datos
     c = conn.cursor()
-    c.execute('UPDATE contactos SER nombre = ?, telefono = ?? WHERE email = ?',
+    c.execute('UPDATE contactos SET nombre = ?, telefono = ? WHERE email = ?',
               (contacto.nombre, contacto.telefono, email))
     conn.commit()
     return contacto
 
-
+'''
 @app.delete("/contactos/{email}")
 async def eliminar_contacto(email: str):
     """Elimina un contacto."""
